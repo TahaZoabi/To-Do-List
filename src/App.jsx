@@ -18,16 +18,25 @@ function App() {
       return [...prevState, todo];
     });
   }
+
+  function handleDeleteButton(index) {
+    setTodosList((prevState) => {
+      let arr = [...prevState];
+      arr.splice(index, 1);
+      return arr;
+    });
+  }
+
   return (
     <div className="flex  justify-center bg-amber-50 ">
-      <main className="bg-amber-200 w-[600px] h-screen flex flex-col justify-around items-center ">
+      <main className="bg-amber-200 w-[600px] h-screen flex flex-col justify-start gap-20 items-center ">
         <Header />
         <Input
           value={todo}
           onChangeInput={(e) => handleChange(e.target.value)}
           onAddButton={() => handleAddButton()}
         />
-        <Todo value={todosList} />
+        <Todo value={todosList} onDeleteButton={handleDeleteButton} />
       </main>
     </div>
   );

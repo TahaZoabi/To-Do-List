@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-function Todo({ value }) {
+function Todo({ value, onDeleteButton }) {
   return (
     <div className="flex flex-col gap-7">
       {/* eslint-disable-next-line react/prop-types */}
@@ -8,7 +8,7 @@ function Todo({ value }) {
           <p className="w-40 ">{todo}</p>
           <div className="flex gap-2">
             <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={() => onDeleteButton(index)}>Delete</button>
           </div>
         </div>
       ))}
