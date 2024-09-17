@@ -7,16 +7,15 @@ import { useState } from "react";
 function App() {
   const [todosList, setTodosList] = useState([]);
   const [todo, setTodo] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleChange(text) {
     setTodo(text);
   }
 
   function handleAddButton() {
-    setTodosList((prevState) => {
-      setTodo("");
-      return [...prevState, todo];
-    });
+    setTodosList((prevState) => [...prevState, todo]);
+    setTodo("");
   }
 
   function handleDeleteButton(index) {
@@ -25,6 +24,10 @@ function App() {
       arr.splice(index, 1);
       return arr;
     });
+  }
+
+  function handleEditMode() {
+    setIsEditing((prevState) => !prevState);
   }
 
   return (
@@ -36,7 +39,12 @@ function App() {
           onChangeInput={(e) => handleChange(e.target.value)}
           onAddButton={() => handleAddButton()}
         />
-        <Todo value={todosList} onDeleteButton={handleDeleteButton} />
+        <Todo
+          value={todosList}
+          onDeleteButton={handleDeleteButton}
+          editMode={isEditing}
+          edit={handleEditMode}
+        />
       </main>
     </div>
   );
