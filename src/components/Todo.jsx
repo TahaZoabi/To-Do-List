@@ -1,25 +1,47 @@
+import { useState } from "react";
+
 // eslint-disable-next-line react/prop-types
-function Todo({ value, onDeleteButton, editMode, edit }) {
+function Todo({ todosList, onDelete, onEdit }) {
+  const [editIndex, setEditIndex] = useState(null);
+  const [editText, setEditText] = useState("");
+
+  function handleEdit(index, text) {
+    setEditIndex(index);
+    setEditText(text);
+  }
+
+  function onSave(index) {
+    onEdit(index, editText);
+    setEditIndex(null);
+    setEditText("");
+  }
+
   return (
     <div className="flex flex-col gap-7">
-      {/* eslint-disable-next-line react/prop-types */}
-      {value.map((todo, index) => (
+      {todosList.map((todo, index) => (
         <div className="flex gap-4" key={index}>
           <p className="w-40 ">
-            {editMode ? (
+            {editIndex === index ? (
               <input
-                value={value[index]}
-                onChange={(e) => (value[index] = e.target.value)}
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
                 type="text"
-                className="flex h-10 w-[300px] rounded-lg border border-input  px-3 py-2 text-sm file:border-0    "
+                className="flex h-10 w-[300px] rounded-lg border border-input px-3 py-2 text-sm"
               />
             ) : (
               todo
             )}
           </p>
           <div className="flex gap-2">
-            <button onClick={() => edit()}>{editMode ? "Save" : "Edit"}</button>
-            <button onClick={() => onDeleteButton(index)}>Delete</button>
+            {editIndex === index ? (
+              <>
+                <button onClick={() => onSave(index)}>Save</button>
+                <button onClick={() => setEditIndex(null)}>Cancel</button>
+              </>
+            ) : (
+              <button onClick={() => handleEdit(index, todo)}>Edit</button>
+            )}
+            <button onClick={() => onDelete(index)}>Delete</button>
           </div>
         </div>
       ))}
