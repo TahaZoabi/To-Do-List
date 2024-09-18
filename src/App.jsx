@@ -13,7 +13,7 @@ function App() {
   }
 
   function handleAddButton() {
-    if (todo.trim() === "") return; // Prevent adding empty todos
+    if (todo.trim() === "" || todo.length < 2) return;
     setTodosList((prevState) => [...prevState, todo]);
     setTodo("");
   }
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="flex justify-center bg-amber-50">
-      <main className="bg-amber-200 w-[600px] h-screen flex flex-col justify-start gap-20 items-center">
+      <main className="bg-amber-200 w-[600px] h-screen flex flex-col justify-start gap-20 items-center ">
         <Header />
         <Input
           value={todo}
