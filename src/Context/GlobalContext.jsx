@@ -28,11 +28,20 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function editTodo(text, index) {
+    dispatch({
+      type: "EDIT_TODO",
+      index,
+      payload: text,
+    });
+  }
+
   // Value
   const contextValue = {
     todosList: state.todosList,
     addTodo,
     deleteTodo,
+    editTodo,
   };
 
   return (

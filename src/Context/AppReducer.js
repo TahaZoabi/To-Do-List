@@ -14,6 +14,17 @@ export default (state, action) => {
         todosList: newTodosList,
       };
     }
+    case "EDIT_TODO": {
+      const updatedTodosList = state.todosList.map((todo, index) =>
+        index === action.index ? action.payload : todo,
+      );
+
+      return {
+        ...state,
+        todosList: updatedTodosList,
+      };
+    }
+
     default:
       return state;
   }
