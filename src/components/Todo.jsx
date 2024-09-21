@@ -8,8 +8,11 @@ function Todo() {
   //   new Array(todosList.length).fill(false),
   // );
 
-  const { todosList } = useContext(GlobalContext);
-  console.log(todosList);
+  const { todosList, deleteTodo } = useContext(GlobalContext);
+
+  function handleDelete(index) {
+    deleteTodo(index);
+  }
 
   // function handleEdit(index, text) {
   //   setEditIndex(index);
@@ -58,7 +61,7 @@ function Todo() {
               <button>Edit</button>
             )}
             <button>Complete</button>
-            <button>Delete</button>
+            <button onClick={() => handleDelete(index)}>Delete</button>
           </div>
         </div>
       ))}

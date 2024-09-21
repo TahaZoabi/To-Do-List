@@ -11,7 +11,7 @@ function Input() {
 
   function handleClick() {
     addTodo(todo);
-    console.log(todo);
+    setTodo("");
   }
 
   return (

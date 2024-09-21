@@ -14,7 +14,6 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Actions
-
   function addTodo(text) {
     dispatch({
       type: "ADD_TODO",
@@ -22,10 +21,18 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function deleteTodo(index) {
+    dispatch({
+      type: "DELETE_TODO",
+      payload: index,
+    });
+  }
+
   // Value
   const contextValue = {
     todosList: state.todosList,
     addTodo,
+    deleteTodo,
   };
 
   return (
