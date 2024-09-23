@@ -31,9 +31,9 @@ function Todo() {
   }
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-7   w-[500px] md:w-[550px] sm:w-[450px]  justify-center ">
       {todosList.map((todo, index) => (
-        <div className="flex gap-4" key={index}>
+        <div className="flex gap-4  px-2 py-2 mx-2 w-full" key={index}>
           <p
             className={`w-full ${completedTodos[index] ? "line-through" : ""}`}
           >
@@ -44,7 +44,7 @@ function Todo() {
                   setEditTodoState({ ...editTodoState, text: e.target.value })
                 }
                 type="text"
-                className="flex h-10 w-[300px] rounded-lg border border-input px-3 py-2 text-sm"
+                className="flex h-10  rounded-lg border border-input px-3 py-2 text-sm mt-1 w-[350px]  border-amber-200 shadow-sm sm:text-sm  py-2file:border-0  file:text-sm    focus-visible:outline-none focus-visible:ring-2"
               />
             ) : (
               todo
